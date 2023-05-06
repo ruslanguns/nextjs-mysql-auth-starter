@@ -27,7 +27,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
             if (ok) {
               router.push("/protected");
             } else {
-              toast.error(error);
+              toast.error(error.message);
             }
           });
         } else {
@@ -48,7 +48,8 @@ export default function Form({ type }: { type: "login" | "register" }) {
                 router.push("/login");
               }, 2000);
             } else {
-              toast.error(await res.text());
+              const errorMessage = await res.json();
+              toast.error(await errorMessage.message);
             }
           });
         }

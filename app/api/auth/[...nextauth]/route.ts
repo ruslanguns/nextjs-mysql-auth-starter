@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 import { compare } from "bcrypt";
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       credentials: {},
@@ -31,3 +31,5 @@ export default NextAuth({
   ],
   session: { strategy: "jwt" },
 });
+
+export { handler as GET, handler as POST };
